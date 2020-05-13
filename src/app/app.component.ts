@@ -16,8 +16,13 @@ export class AppComponent {
 
   addContact() {
     this.contacts.push(this.newContact);
+    // Create new empty contact, so fields point towards this new contact (and don't edit the most recently added one).
+    this.newContact = {} as Contact;
   }
 
+  deleteContact(index: number) {
+    this.contacts.splice(index, 1);
+  }
 }
 
 

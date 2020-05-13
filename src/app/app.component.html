@@ -12,22 +12,25 @@
     <th>Name</th>
     <th>E-mail address</th>
   </tr>
-  <tr *ngFor="let contact of contacts">
+  <tr *ngFor="let contact of contacts; index as i">
     <td>{{contact.firstName}} {{contact.surname}}</td>
     <td>{{contact.email}}</td>
     <td>
       <button class="btn">edit</button>
-      <button class="btn">Delete</button>
+      <button class="btn" (click)="deleteContact(i)">Delete</button>
     </td>
   </tr>
 </table>
   <form (ngSubmit)="addContact()">
     <label for="inputFirstName">First name:</label>
     <input type="text" [(ngModel)]="newContact.firstName" name="firstName" id="inputFirstName" class="form-control">
+    <br>
     <label for="inputSurname">Surname:</label>
     <input type="text" [(ngModel)]="newContact.surname" name="surname" id="inputSurname" class="form-control">
+    <br>
     <label for="inputEmail">Email:</label>
     <input type="text" [(ngModel)]="newContact.email" name="email" id="inputEmail" class="form-control">
+    <br>
     <button class="btn btn-primary">Add</button>
   </form>
 </body>
