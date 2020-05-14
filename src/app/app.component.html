@@ -13,7 +13,7 @@
     <th>E-mail address</th>
   </tr>
   <tr *ngFor="let contact of contacts; index as i">
-    <td>{{contact.firstName}} {{contact.surname}}</td>
+    <td>{{contact | contactName }}</td>
     <td>{{contact.email}}</td>
     <td>
       <button class="btn">edit</button>

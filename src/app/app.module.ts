@@ -5,10 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { FormsModule } from '@angular/forms';
+import {ContactNamePipe} from './pipes/contact-name.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ContactNamePipe
   ],
   imports: [
     BrowserModule,
