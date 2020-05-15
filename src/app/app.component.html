@@ -6,32 +6,46 @@
   <!--  <link rel="stylesheet" href="app.component.css">-->
 </head>
 <body>
-<h1>Bla</h1>
+<h1>Date Picker: Contacts</h1>
+
+<h2>Add contact</h2>
+<form [formGroup]="contactForm">
+  <ul>
+    <li>
+      <label for="inputFirstName">First name:</label>
+      <input type="text" name="firstName" id="inputFirstName" class="form-control" formControlName="firstName" required>
+    </li>
+    <li>
+      <label for="inputSurname">Surname:</label>
+      <input type="text" name="surname" id="inputSurname" class="form-control" formControlName="surname" required>
+    </li>
+    <li>
+      <label for="inputEmail">Email:</label>
+      <input type="text" name="email" id="inputEmail" class="form-control" formControlName="email" required>
+    </li>
+    <li>
+      <button class="btn-primary" (click)="addContact()" [disabled]="!contactForm.valid">Add</button>
+    </li>
+  </ul>
+</form>
+
 <table class="table">
   <tr>
     <th>Name</th>
     <th>E-mail address</th>
+    <th>Actions</th>
   </tr>
   <tr *ngFor="let contact of contacts; index as i">
     <td>{{contact | contactName }}</td>
     <td>{{contact.email}}</td>
     <td>
-      <button class="btn">edit</button>
+      <button class="btn" (click)="editContact(i)">edit</button>
       <button class="btn" (click)="deleteContact(i)">Delete</button>
     </td>
   </tr>
 </table>
-  <form (ngSubmit)="addContact()">
-    <label for="inputFirstName">First name:</label>
-    <input type="text" [(ngModel)]="newContact.firstName" name="firstName" id="inputFirstName" class="form-control">
-    <br>
-    <label for="inputSurname">Surname:</label>
-    <input type="text" [(ngModel)]="newContact.surname" name="surname" id="inputSurname" class="form-control">
-    <br>
-    <label for="inputEmail">Email:</label>
-    <input type="text" [(ngModel)]="newContact.email" name="email" id="inputEmail" class="form-control">
-    <br>
-    <button class="btn btn-primary">Add</button>
-  </form>
+<p>
+  {{contactEdited}}
+</p>
 </body>
 </html>
