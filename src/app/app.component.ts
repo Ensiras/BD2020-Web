@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {Contact} from './models/contact';
-import {FormControl, FormGroup} from '@angular/forms';
-import { Validators } from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -15,26 +14,24 @@ export class AppComponent {
     {firstName: 'Bert', surname: 'de Boer', email: 'bertversebroodjes@live.nl'}
   ];
 
-  contactForm: any = new FormGroup({
-      firstName: new FormControl('', Validators.required),
-      surname: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.email)
+  contactForm = new FormGroup({
+      firstName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]+')] ),
+      surname: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]+')]),
+      email: new FormControl('', [Validators.email, Validators.required])
     }
   );
-  contactEdited: any;
 
   addContact() {
     this.contacts.push(this.contactForm.value);
     this.contactForm.reset();
-    this.contactEdited.setValue('hallo?');
   }
 
   deleteContact(i: number) {
     this.contacts.splice(i, 1);
   }
 
-  editContact(i: number) {
-
+  addFramework() {
+    console.log('hallo');
   }
 }
 

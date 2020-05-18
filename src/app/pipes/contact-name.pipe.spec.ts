@@ -9,7 +9,7 @@ describe('Pipe: ContactName', () => {
   });
 
   it('should concatenate a contact name', () => {
-    const contact = {firstName: 'Bert', surname: 'Brood', email: 'bertbrood@lekker.nl'};
+    const contact = {firstname: 'Bert', surname: 'Brood', email: 'bertbrood@lekker.nl'};
 
     const result = pipe.transform(contact);
 

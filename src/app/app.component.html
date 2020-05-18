@@ -2,29 +2,36 @@
 <html>
 <head>
   <title>My Trips</title>
-  <!--  Note that link to stylsheet is redundant -->
-  <!--  <link rel="stylesheet" href="app.component.css">-->
 </head>
 <body>
 <h1>Date Picker: Contacts</h1>
 
 <h2>Add contact</h2>
+
 <form [formGroup]="contactForm">
   <ul>
     <li>
-      <label for="inputFirstName">First name:</label>
-      <input type="text" name="firstName" id="inputFirstName" class="form-control" formControlName="firstName" required>
+      <label for="inputName">First name:</label>
+      <input type="text" id="inputName" formControlName="firstName">
+      <span *ngIf="contactForm.controls.firstName.touched && contactForm.controls.firstName.invalid">*</span>
+      <span *ngIf="contactForm.controls.firstName.touched && contactForm.controls.firstName.errors?.required">Dit veld is verplicht.</span>
+      <span *ngIf="contactForm.controls.firstName.touched && contactForm.controls.firstName.errors?.pattern">Dit veld mag alleen letters en spaties bevatten.</span>
     </li>
     <li>
       <label for="inputSurname">Surname:</label>
       <input type="text" name="surname" id="inputSurname" class="form-control" formControlName="surname" required>
+      <span *ngIf="contactForm.controls.surname.touched && contactForm.controls.surname.invalid">*</span>
+      <span *ngIf="contactForm.controls.surname.touched && contactForm.controls.surname.errors?.required">Dit veld is verplicht.</span>
     </li>
     <li>
       <label for="inputEmail">Email:</label>
       <input type="text" name="email" id="inputEmail" class="form-control" formControlName="email" required>
+      <span *ngIf="contactForm.controls.email.touched && contactForm.controls.email.invalid">*</span>
+      <span *ngIf="contactForm.controls.email.touched && contactForm.controls.email.errors?.required">Dit veld is verplicht.</span>
+      <span *ngIf="contactForm.controls.email.touched && contactForm.controls.email.errors?.email">Dit is geen geldig e-mailadres.</span>
     </li>
     <li>
-      <button class="btn-primary" (click)="addContact()" [disabled]="!contactForm.valid">Add</button>
+      <button class="btn-primary" (click)="addContact()" [disabled]="contactForm.invalid">Add</button>
     </li>
   </ul>
 </form>
@@ -39,13 +46,10 @@
     <td>{{contact | contactName }}</td>
     <td>{{contact.email}}</td>
     <td>
-      <button class="btn" (click)="editContact(i)">edit</button>
+      <button class="btn" >edit</button>
       <button class="btn" (click)="deleteContact(i)">Delete</button>
     </td>
   </tr>
 </table>
-<p>
-  {{contactEdited}}
-</p>
 </body>
 </html>

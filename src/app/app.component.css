@@ -26,7 +26,7 @@ td {
 
 form {
   padding: 5px;
-  width: 300px;
+  width: 40%;
 }
 
 
@@ -43,18 +43,19 @@ li {
   margin: 5px;
 }
 
-.form-control {
-  float:right;
-}
-
 .btn-primary {
   float: right;
   margin-top: 10px;
 }
 
-.ng-invalid:not(form) {
-  border-color: red;
-  background: lightcoral;
+input.ng-dirty.ng-valid {
+  background-color: lightgreen;
 }
+
+input.ng-dirty.ng-invalid,
+input.ng-touched.ng-invalid {
+  box-shadow: 0 0 5px 2px red;
+}
+
 
 
