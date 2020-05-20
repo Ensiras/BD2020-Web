@@ -1,0 +1,20 @@
+{
+  "Contact": [
+    {
+      "firstName": "Fred",
+      "surname": "de Boer",
+      "email": "fredje1966@hotmail.com"
+    },
+    {
+      "firstName": "Jannie",
+      "surname": "Bijvens",
+      "email": "superjannie@yahoo.com"
+    },
+    {
+      "firstName": "Bert",
+      "surname": "de Boer",
+      "email": "bertversebroodjes@live.nl"
+  }
+]
+}
+

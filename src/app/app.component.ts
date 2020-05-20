@@ -1,13 +1,14 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Contact} from './models/contact';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   contacts: Contact[] = [
     {firstName: 'Fred', surname: 'de Boer', email: 'fredje1966@hotmail.com'},
     {firstName: 'Jannie', surname: 'Bijvens', email: 'superjannie@yahoo.com'},
@@ -32,6 +33,16 @@ export class AppComponent {
 
   addFramework() {
     console.log('hallo');
+  }
+
+  constructor(private httpClient: HttpClient) {
+  }
+
+  ngOnInit(): void {
+    const url = 'http://localhost:3100/Contact';
+    const observable = this.httpClient.get<Contact[]>(url);
+    observable.subscribe(cont => {this.contacts = cont; });
+
   }
 }
 
