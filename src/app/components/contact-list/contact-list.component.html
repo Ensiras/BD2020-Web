@@ -1,0 +1,15 @@
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>E-mail address</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let contact of contacts; index as i">
+    <td>{{contact | contactName }}</td>
+    <td>{{contact.email}}</td>
+    <td>
+      <button class="btn" >edit</button>
+      <button class="btn" (click)="deleteContact(i)">Delete</button>
+    </td>
+  </tr>
+</table>

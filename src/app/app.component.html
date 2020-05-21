@@ -10,20 +10,8 @@
     Also: configuring add event to fire addcontact function of app.component with $event being a contact being passed-->
 <app-contact-form (add)="addContact($event)"></app-contact-form>
 
-<table class="table">
-  <tr>
-    <th>Name</th>
-    <th>E-mail address</th>
-    <th>Actions</th>
-  </tr>
-  <tr *ngFor="let contact of contacts; index as i">
-    <td>{{contact | contactName }}</td>
-    <td>{{contact.email}}</td>
-    <td>
-      <button class="btn" >edit</button>
-      <button class="btn" (click)="deleteContact(i)">Delete</button>
-    </td>
-  </tr>
-</table>
+<!--Hack-y method to pass a new contact to the contact list to display it -->
+<app-contact-list [contacts]="contacts"></app-contact-list>
+
 </body>
 </html>
