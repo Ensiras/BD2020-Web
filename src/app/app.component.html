@@ -6,35 +6,9 @@
 <body>
 <h1>Date Picker: Contacts</h1>
 
-<h2>Add contact</h2>
-
-<form [formGroup]="contactForm">
-  <ul>
-    <li>
-      <label for="inputName">First name:</label>
-      <input type="text" id="inputName" formControlName="firstName">
-      <span *ngIf="contactForm.controls.firstName.touched && contactForm.controls.firstName.invalid">*</span>
-      <span *ngIf="contactForm.controls.firstName.touched && contactForm.controls.firstName.errors?.required">Dit veld is verplicht.</span>
-      <span *ngIf="contactForm.controls.firstName.touched && contactForm.controls.firstName.errors?.pattern">Dit veld mag alleen letters en spaties bevatten.</span>
-    </li>
-    <li>
-      <label for="inputSurname">Surname:</label>
-      <input type="text" name="surname" id="inputSurname" class="form-control" formControlName="surname" required>
-      <span *ngIf="contactForm.controls.surname.touched && contactForm.controls.surname.invalid">*</span>
-      <span *ngIf="contactForm.controls.surname.touched && contactForm.controls.surname.errors?.required">Dit veld is verplicht.</span>
-    </li>
-    <li>
-      <label for="inputEmail">Email:</label>
-      <input type="text" name="email" id="inputEmail" class="form-control" formControlName="email" required>
-      <span *ngIf="contactForm.controls.email.touched && contactForm.controls.email.invalid">*</span>
-      <span *ngIf="contactForm.controls.email.touched && contactForm.controls.email.errors?.required">Dit veld is verplicht.</span>
-      <span *ngIf="contactForm.controls.email.touched && contactForm.controls.email.errors?.email">Dit is geen geldig e-mailadres.</span>
-    </li>
-    <li>
-      <button class="btn-primary" (click)="addContact()" [disabled]="contactForm.invalid">Add</button>
-    </li>
-  </ul>
-</form>
+<!--Placing the contact form component (child) inside app component (parent)
+    Also: configuring add event to fire addcontact function of app.component with $event being a contact being passed-->
+<app-contact-form (add)="addContact($event)"></app-contact-form>
 
 <table class="table">
   <tr>

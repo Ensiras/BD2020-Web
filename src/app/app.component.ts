@@ -15,24 +15,8 @@ export class AppComponent implements OnInit {
     {firstName: 'Bert', surname: 'de Boer', email: 'bertversebroodjes@live.nl'}
   ];
 
-  contactForm = new FormGroup({
-      firstName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]+')] ),
-      surname: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]+')]),
-      email: new FormControl('', [Validators.email, Validators.required])
-    }
-  );
-
-  addContact() {
-    this.contacts.push(this.contactForm.value);
-    this.contactForm.reset();
-  }
-
   deleteContact(i: number) {
     this.contacts.splice(i, 1);
-  }
-
-  addFramework() {
-    console.log('hallo');
   }
 
   constructor(private httpClient: HttpClient) {
@@ -43,6 +27,11 @@ export class AppComponent implements OnInit {
     const observable = this.httpClient.get<Contact[]>(url);
     observable.subscribe(cont => {this.contacts = cont; });
 
+  }
+
+  // Function that is fired by add event of contact form, passing a contact and adding it to de array.
+  addContact($event: Contact) {
+    this.contacts.push($event);
   }
 }
 
